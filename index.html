@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>GharDirect — No Broker. No Commission. Real India.</title>
+<title>GharDhundho — No Broker. No Commission. Real India.</title>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;800&family=Noto+Sans:wght@400;500;700&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
@@ -584,7 +584,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
 <div id="loading-screen">
   <div class="loading-logo">G</div>
   <div class="spinner"></div>
-  <p style="color:var(--text3);font-size:13px;">Loading GharDirect...</p>
+  <p style="color:var(--text3);font-size:13px;">Loading GharDhundho...</p>
 </div>
 
 <div id="toast"></div>
@@ -592,7 +592,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
 <nav id="navbar">
   <div class="nav-brand">
     <div class="nav-logo">G</div>
-    <span class="nav-title">Ghar<span>Direct</span></span>
+    <span class="nav-title">Ghar<span>Dhundho</span></span>
   </div>
   <div class="nav-right">
     <button class="theme-toggle" onclick="toggleTheme()" title="Toggle Theme">
@@ -688,7 +688,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
 
   <section id="users-section">
     <h2 class="section-title">Our Community</h2>
-    <p class="section-sub">People using GharDirect across India</p>
+    <p class="section-sub">People using GharDhundho across India</p>
     <div class="users-grid" id="users-grid">
       <p style="color:var(--text3);font-size:13px;">Loading users...</p>
     </div>
@@ -701,7 +701,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
       <div class="founder-info">
         <h3>Udit Mistry</h3>
         <p class="founder-college"><i class="fas fa-university"></i> BCA Student — Bholabhai Patel College of Computer Studies</p>
-        <p style="margin-top:8px;">GharDirect ka vision ek aisa platform banana tha jahan Indians apni property broker ke bina list kar sakein. Koi commission nahi, sirf direct connection. 🇮🇳</p>
+        <p style="margin-top:8px;">GharDhundho ka vision ek aisa platform banana tha jahan Indians apni property broker ke bina list kar sakein. Koi commission nahi, sirf direct connection. 🇮🇳</p>
         <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
           <span class="pill"><i class="fab fa-github"></i> GitHub</span>
           <span class="pill">🇮🇳 Made in India</span>
@@ -713,7 +713,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
 
   <section id="feedback-section">
     <h2 class="section-title" style="text-align:center;margin-bottom:6px;">Your Feedback</h2>
-    <p style="text-align:center;color:var(--text3);font-size:14px;margin-bottom:24px;">Help us improve GharDirect for all Indians</p>
+    <p style="text-align:center;color:var(--text3);font-size:14px;margin-bottom:24px;">Help us improve GharDhundho for all Indians</p>
     <div class="feedback-form">
       <div class="stars" id="star-row">
         <button class="star-btn" data-s="1" onclick="setStars(1)">★</button>
@@ -731,10 +731,10 @@ textarea.form-input{resize:vertical;min-height:80px;}
 
   <footer id="footer">
     <p style="margin-bottom:6px;">
-      <span style="font-family:var(--font-head);font-size:18px;font-weight:800;color:var(--accent);">GharDirect</span>
+      <span style="font-family:var(--font-head);font-size:18px;font-weight:800;color:var(--accent);">GharDhundho</span>
     </p>
     <p>🇮🇳 Made with ❤️ in India · <a href="#" onclick="openModal('terms-modal')">Terms & Conditions</a> · <a href="#" onclick="openModal('privacy-modal')">Privacy Policy</a></p>
-    <p style="margin-top:6px;">© 2024 GharDirect by Udit Mistry — Zero Brokerage, Real India</p>
+    <p style="margin-top:6px;">© 2026 GharDhundho by Udit Mistry — Zero Brokerage, Real India</p>
   </footer>
 
 </div><div id="page-profile" class="hidden" style="min-height:80vh;">
@@ -796,7 +796,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
 <div class="modal-overlay" id="login-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('login-modal')"><i class="fas fa-times"></i></button>
-    <div class="modal-title">Welcome to GharDirect 🏠</div>
+    <div class="modal-title">Welcome to GharDhundho 🏠</div>
     <p style="color:var(--text3);font-size:14px;margin-bottom:20px;">Login karein ya register karein Google se — bilkul free</p>
     <button class="google-btn" onclick="loginWithGoogle()">
       <div class="google-icon"></div>
@@ -890,6 +890,12 @@ textarea.form-input{resize:vertical;min-height:80px;}
       <label class="form-label">Written Location / Area *</label>
       <input class="form-input" id="post-location" placeholder="e.g. Andheri West, Mumbai, Maharashtra"/>
     </div>
+    
+    <div class="form-group">
+      <label class="form-label">Exact Google Maps Link <span style="font-weight:400;color:var(--text3)">(Optional)</span></label>
+      <input class="form-input" id="post-maplink" type="url" placeholder="https://maps.app.goo.gl/..."/>
+    </div>
+
     <div class="form-group">
       <label class="form-label">WhatsApp Contact Number *</label>
       <input class="form-input" id="post-whatsapp" type="tel" placeholder="+91 98765 43210" maxlength="13"/>
@@ -928,14 +934,14 @@ textarea.form-input{resize:vertical;min-height:80px;}
     <button class="modal-close" onclick="closeModal('terms-modal')"><i class="fas fa-times"></i></button>
     <div class="modal-title">Terms & Conditions</div>
     <div style="color:var(--text2);font-size:14px;line-height:1.8;max-height:400px;overflow-y:auto;">
-      <p><strong>GharDirect — Zero Brokerage Real Estate Platform</strong></p>
-      <p class="mt-1">1. <strong>Free Service:</strong> GharDirect ek free platform hai. Koi brokerage ya commission nahi liya jaata.</p>
+      <p><strong>GharDhundho — Zero Brokerage Real Estate Platform</strong></p>
+      <p class="mt-1">1. <strong>Free Service:</strong> GharDhundho ek free platform hai. Koi brokerage ya commission nahi liya jaata.</p>
       <p class="mt-1">2. <strong>Real Listings Only:</strong> User sirf apni khud ki property list kar sakta hai. Broker ya dalal ki taraf se multiple listings allowed nahi hain. Ek user sirf ek active ad rakh sakta hai.</p>
-      <p class="mt-1">3. <strong>Direct Contact:</strong> Buyers/renters directly WhatsApp pe contact karte hain. GharDirect koi responsibility nahi leta transactions ke liye.</p>
+      <p class="mt-1">3. <strong>Direct Contact:</strong> Buyers/renters directly WhatsApp pe contact karte hain. GharDhundho koi responsibility nahi leta transactions ke liye.</p>
       <p class="mt-1">4. <strong>Accurate Information:</strong> Users ko sahi location, price aur contact details deni hogi. Galat information pe account suspend ho sakta hai.</p>
       <p class="mt-1">5. <strong>Data Privacy:</strong> Aapka data safely Firebase mein store hota hai. Aapka WhatsApp number sirf logged-in users dekh sakte hain.</p>
       <p class="mt-1">6. <strong>India Only:</strong> Yeh platform sirf India ke liye hai. Sirf Indian pincodes allowed hain.</p>
-      <p class="mt-1">7. <strong>Content Moderation:</strong> Koi bhi inappropriate content allowed nahi. GharDirect kisi bhi ad ko bina notice ke remove kar sakta hai.</p>
+      <p class="mt-1">7. <strong>Content Moderation:</strong> Koi bhi inappropriate content allowed nahi. GharDhundho kisi bhi ad ko bina notice ke remove kar sakta hai.</p>
       <p class="mt-1">8. <strong>Governing Law:</strong> Yeh terms Indian law ke under governed hain.</p>
     </div>
   </div>
@@ -986,18 +992,17 @@ textarea.form-input{resize:vertical;min-height:80px;}
   import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
     from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
   import { getFirestore, collection, doc, getDoc, getDocs, setDoc, addDoc, deleteDoc,
-    updateDoc, query, where, orderBy, limit, onSnapshot, serverTimestamp, increment }
+    updateDoc, query, where, orderBy, limit, onSnapshot, serverTimestamp, increment, arrayUnion, arrayRemove }
     from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-  // ⬇️ APNA CONFIG YAHAN REPLACE KARO (Firebase Console se copy karo)
   const firebaseConfig = {
-apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
-  authDomain: "bookmyhouse-47cef.firebaseapp.com",
-  databaseURL: "https://bookmyhouse-47cef-default-rtdb.firebaseio.com",
-  projectId: "bookmyhouse-47cef",
-  storageBucket: "bookmyhouse-47cef.firebasestorage.app",
-  messagingSenderId: "687866511054",
-  appId: "1:687866511054:web:380a51e169170c34f19a9f"     
+    apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
+    authDomain: "bookmyhouse-47cef.firebaseapp.com",
+    databaseURL: "https://bookmyhouse-47cef-default-rtdb.firebaseio.com",
+    projectId: "bookmyhouse-47cef",
+    storageBucket: "bookmyhouse-47cef.firebasestorage.app",
+    messagingSenderId: "687866511054",
+    appId: "1:687866511054:web:380a51e169170c34f19a9f"     
   };
 
   const app = initializeApp(firebaseConfig);
@@ -1006,7 +1011,7 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
   const provider = new GoogleAuthProvider();
 
   // Make globally accessible
-  window._fb = { auth, db, provider, serverTimestamp, increment };
+  window._fb = { auth, db, provider, serverTimestamp, increment, arrayUnion, arrayRemove };
 
   // =====================
   // AUTH STATE LISTENER
@@ -1026,13 +1031,15 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
           address: '',
           state: '',
           gender: '',
+          likedProps: [],
           createdAt: serverTimestamp()
         });
       }
-      window.currentUserData = snap.exists() ? snap.data() : {};
+      window.currentUserData = snap.exists() ? snap.data() : { likedProps: [] };
+      if (!window.currentUserData.likedProps) window.currentUserData.likedProps = [];
+      
       updateNavForUser(user);
       
-      // FIX 1: Access via window object
       if (window.loadStats) window.loadStats();
       if (window.loadUsers) window.loadUsers();
     } else {
@@ -1055,6 +1062,9 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
       await signInWithPopup(auth, provider);
       closeModal('login-modal');
       showToast('Login successful! Welcome 🎉', 'success');
+      
+      setTimeout(() => { window.getUserLocation(true); }, 1500);
+      
       showPage('profile');
     } catch(e) {
       if(e.code !== 'auth/popup-closed-by-user') showToast('Login failed: ' + e.message, 'error');
@@ -1071,12 +1081,15 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
     if (!window.currentUser) return;
     const whatsapp = document.getElementById('edit-whatsapp').value.trim();
     if (!whatsapp) { showToast('WhatsApp number required!', 'error'); return; }
+    
+    // Maplink removed from profile save
     const data = {
       whatsapp,
       address: document.getElementById('edit-address').value.trim(),
       state: document.getElementById('edit-state').value,
       gender: document.getElementById('edit-gender').value
     };
+    
     await setDoc(doc(db, 'users', window.currentUser.uid), data, { merge: true });
     window.currentUserData = { ...window.currentUserData, ...data };
     closeModal('profile-edit-modal');
@@ -1091,6 +1104,9 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
         window.allProps = snap.docs.map(d => ({ id: d.id, ...d.data() }));
         if(window.renderListings) window.renderListings(window.allProps);
         if(window.updateStats) window.updateStats();
+        if(!document.getElementById('page-profile').classList.contains('hidden') && window.renderProfilePage){
+            window.renderProfilePage();
+        }
       });
     } catch(e) {
       document.getElementById('prop-grid').innerHTML =
@@ -1099,7 +1115,7 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
   };
 
   // =====================
-  // SUBMIT POST AD (ImgBB)
+  // SUBMIT POST AD
   // =====================
   window.submitPost = async () => {
     if (!window.currentUser) { openModal('login-modal'); return; }
@@ -1121,6 +1137,7 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
     const pincode = document.getElementById('post-pincode').value.trim();
     const location = document.getElementById('post-location').value.trim();
     const whatsapp = document.getElementById('post-whatsapp').value.trim();
+    const mapLink = document.getElementById('post-maplink').value.trim(); // GETTING MAP LINK HERE
     const desc = document.getElementById('post-desc').value.trim();
     const terms = document.getElementById('post-terms').checked;
     const category = document.getElementById('post-category').value;
@@ -1136,8 +1153,6 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
     try {
       const files = document.getElementById('post-images').files;
       const imgURLs = [];
-      
-      // 🔥 YAHAN APNI IMGBB API KEY DALO 🔥
       const IMGBB_API_KEY = "87973612bbce381e78cef86c50cc233b"; 
 
       for (let i = 0; i < Math.min(files.length, 5); i++) {
@@ -1152,7 +1167,7 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
       }
 
       await addDoc(collection(db, 'properties'), {
-        title, type, price: Number(price), pincode, location, whatsapp,
+        title, type, price: Number(price), pincode, location, whatsapp, mapLink, // SAVING MAP LINK HERE
         desc, category, images: imgURLs,
         uid: window.currentUser.uid,
         ownerName: window.currentUser.displayName,
@@ -1165,7 +1180,7 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
       closeModal('post-modal');
       showToast('Ad posted successfully! 🎉', 'success');
       
-      ['post-title','post-price','post-pincode','post-location','post-whatsapp','post-desc'].forEach(id=>document.getElementById(id).value='');
+      ['post-title','post-price','post-pincode','post-location','post-whatsapp','post-desc','post-maplink'].forEach(id=>document.getElementById(id).value='');
       document.getElementById('post-terms').checked = false;
       document.getElementById('img-preview-row').innerHTML = '';
       document.getElementById('post-images').value = '';
@@ -1185,24 +1200,38 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
     showToast('Ad deleted!', 'success');
   };
 
-  // FIX 3: Like & Share count issue
   window.toggleInterest = async (propId, btn) => {
     if (!window.currentUser) { openModal('login-modal'); return; }
     try {
       const uid = window.currentUser.uid;
       const intRef = doc(db, `properties/${propId}/interests`, uid);
+      const userRef = doc(db, 'users', uid);
       const snap = await getDoc(intRef);
+
+      if (!window.currentUserData.likedProps) window.currentUserData.likedProps = [];
+
       if (snap.exists()) {
         await deleteDoc(intRef);
         await updateDoc(doc(db,'properties',propId), { interests: window._fb.increment(-1) });
+        await updateDoc(userRef, { likedProps: window._fb.arrayRemove(propId) });
+        
+        window.currentUserData.likedProps = window.currentUserData.likedProps.filter(id => id !== propId);
         btn.classList.remove('interested');
         showToast('Interest removed', '');
       } else {
         await setDoc(intRef, { uid, name: window.currentUser.displayName, photo: window.currentUser.photoURL, ts: serverTimestamp() });
         await updateDoc(doc(db,'properties',propId), { interests: window._fb.increment(1) });
+        await updateDoc(userRef, { likedProps: window._fb.arrayUnion(propId) });
+        
+        window.currentUserData.likedProps.push(propId);
         btn.classList.add('interested');
         showToast('Interest added! ❤️', 'success');
       }
+
+      if(!document.getElementById('page-profile').classList.contains('hidden')){
+         window.renderProfilePage();
+      }
+
     } catch(e) {
       console.error(e);
       showToast('Error liking post!', 'error');
@@ -1213,7 +1242,7 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
     const prop = (window.allProps||[]).find(p => p.id === propId);
     if(!prop) return;
 
-    const text = `🏠 ${prop.title}\n📍 ${prop.location}\n💰 ₹${Number(prop.price).toLocaleString('en-IN')} (${prop.type==='rent'?'Rent':'Sale'})\n\nCheck on GharDirect — Zero Brokerage!`;
+    const text = `🏠 ${prop.title}\n📍 ${prop.location}\n💰 ₹${Number(prop.price).toLocaleString('en-IN')} (${prop.type==='rent'?'Rent':'Sale'})\n\nCheck on GharDhundho — Zero Brokerage!`;
     if (navigator.share) {
       try { await navigator.share({ title: prop.title, text }); } catch(e) {}
     } else {
@@ -1221,7 +1250,6 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
       showToast('Copied to clipboard!', 'success');
     }
     
-    // Increment Shares
     try {
       await updateDoc(doc(db,'properties',prop.id), { shares: window._fb.increment(1) });
     } catch(e) { console.error("Share tracking error", e); }
@@ -1270,6 +1298,7 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
     if (ud.whatsapp) badges.push(`<span class="badge badge-sell"><i class="fab fa-whatsapp"></i> ${ud.whatsapp}</span>`);
     if (ud.state) badges.push(`<span class="pill">📍 ${ud.state}</span>`);
     if (ud.gender) badges.push(`<span class="pill">${ud.gender==='Male'?'👨':'👩'} ${ud.gender}</span>`);
+    
     document.getElementById('profile-badges').innerHTML = badges.join('');
 
     if (!ud.whatsapp || !ud.state) document.getElementById('complete-notice').classList.remove('hidden');
@@ -1286,6 +1315,16 @@ apiKey: "AIzaSyCSvp9elF8I9XBBl9_jFP6kzb9afPiWU1M",
       adsGrid.innerHTML = myProps.map(p=>window.renderCard(p,true)).join('');
     } else {
       adsGrid.innerHTML = `<div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-home"></i><div>Aapki koi property listed nahi hai.</div><button class="btn btn-primary btn-sm mt-2" onclick="openModal('post-modal')">+ Post Ad</button></div>`;
+    }
+
+    const myLikedIds = window.currentUserData?.likedProps || [];
+    const likedProps = (window.allProps||[]).filter(p => myLikedIds.includes(p.id));
+    const intGrid = document.getElementById('my-interests-list');
+    
+    if (likedProps.length) {
+      intGrid.innerHTML = `<div class="prop-grid">` + likedProps.map(p => window.renderCard(p)).join('') + `</div>`;
+    } else {
+      intGrid.innerHTML = `<div class="empty-state"><i class="fas fa-heart"></i><div>Kisi property mein interest nahi dikhaya abhi.</div></div>`;
     }
   };
 </script>
@@ -1345,20 +1384,20 @@ function updateNavForGuest() {
   document.getElementById('nav-logged-in').classList.add('hidden');
 }
 
-// ==============================
-// RENDER CARD
-// ==============================
 window.renderCard = function(p, isOwner=false) {
   const isCurrentUser = window.currentUser && p.uid === window.currentUser.uid;
+  
+  const isLiked = window.currentUserData && window.currentUserData.likedProps && window.currentUserData.likedProps.includes(p.id);
+  const heartClass = isLiked ? 'interested' : '';
+
   const imgHTML = p.images && p.images.length
     ? `<img src="${p.images[0]}" alt="${p.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder><i class=fas fa-home></i><span>No Image</span></div>'/>`
     : `<div class="card-img-placeholder"><i class="fas fa-home"></i><span>No Image</span></div>`;
 
   const timeStr = p.createdAt?.toDate ? formatTime(p.createdAt.toDate()) : 'Recently';
   const waNum = (p.whatsapp||'').replace(/\D/g,'');
-  const waMsg = encodeURIComponent(`Hi! Maine GharDirect pe aapki property dekhi: "${p.title}" (${p.location}). Kya yeh abhi available hai?`);
+  const waMsg = encodeURIComponent(`Hi! Maine GharDhundho pe aapki property dekhi: "${p.title}" (${p.location}). Kya yeh abhi available hai?`);
 
-  // FIX 2: Fixed the JSON.stringify issue in Share Button
   return `<div class="prop-card" id="card-${p.id}">
     <div class="card-img-wrap" style="cursor:pointer" onclick="openDetail('${p.id}')">
       ${imgHTML}
@@ -1384,7 +1423,7 @@ window.renderCard = function(p, isOwner=false) {
       </div>
       <div class="card-stats">
         <div class="card-stat">
-          <button id="int-btn-${p.id}" onclick="toggleInterest('${p.id}',this)" ${!window.currentUser?'disabled':''}>
+          <button id="int-btn-${p.id}" class="${heartClass}" onclick="toggleInterest('${p.id}',this)" ${!window.currentUser?'disabled':''}>
             <i class="fas fa-heart"></i> <span id="int-count-${p.id}">${p.interests||0}</span>
           </button>
         </div>
@@ -1438,9 +1477,6 @@ function filterListings() {
   if(window.renderListings) window.renderListings(window.allProps || []);
 }
 
-// ==============================
-// IMAGE SLIDER LOGIC
-// ==============================
 window.changeSlide = function(dir) {
   if(!window.currentSliderImages) return;
   const len = window.currentSliderImages.length;
@@ -1449,9 +1485,6 @@ window.changeSlide = function(dir) {
   document.getElementById('slider-counter').innerText = `${window.currentSliderIndex + 1} / ${len}`;
 };
 
-// ==============================
-// OPEN PROPERTY DETAIL
-// ==============================
 window.openDetail = function(id) {
   if (!window.currentUser) {
     showToast('Details dekhne ke liye login karo!', 'error');
@@ -1461,9 +1494,8 @@ window.openDetail = function(id) {
   const p = (window.allProps||[]).find(x=>x.id===id);
   if (!p) return;
   const waNum = (p.whatsapp||'').replace(/\D/g,'');
-  const waMsg = encodeURIComponent(`Hi! Maine GharDirect pe aapki property dekhi: "${p.title}" (${p.location}). Kya yeh abhi available hai?`);
+  const waMsg = encodeURIComponent(`Hi! Maine GharDhundho pe aapki property dekhi: "${p.title}" (${p.location}). Kya yeh abhi available hai?`);
   
-  // FIX 5: Creating the interactive Slider
   window.currentSliderImages = p.images || [];
   window.currentSliderIndex = 0;
 
@@ -1495,14 +1527,17 @@ window.openDetail = function(id) {
     <div class="map-embed">
       <iframe src="https://maps.google.com/maps?q=${encodeURIComponent(p.location+' '+p.pincode)}&output=embed" loading="lazy" title="Property Location"></iframe>
     </div>
+    
     <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
       <a href="https://wa.me/${waNum}?text=${waMsg}" target="_blank" class="btn btn-whatsapp" style="flex:1;justify-content:center;" onclick="trackWA('${p.id}')">
-        <i class="fab fa-whatsapp"></i> Contact on WhatsApp
+        <i class="fab fa-whatsapp"></i> WhatsApp
       </a>
-      <button class="btn btn-ghost" onclick="shareProperty('${p.id}')">
+      ${p.mapLink ? `<a href="${p.mapLink}" target="_blank" class="btn btn-ghost" style="flex:1;justify-content:center;color:var(--blue);border-color:var(--blue);"><i class="fas fa-map-marker-alt"></i> View Map</a>` : ''}
+      <button class="btn btn-ghost" style="flex:1;justify-content:center;" onclick="shareProperty('${p.id}')">
         <i class="fas fa-share-alt"></i> Share
       </button>
     </div>
+    
     <div style="display:flex;align-items:center;gap:10px;margin-top:16px;padding-top:12px;border-top:1px solid var(--border);">
       <img src="${p.ownerPhoto||''}" style="width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);" onerror="this.src='https://ui-avatars.com/api/?name=${p.ownerName ? p.ownerName[0] : 'O'}&background=FF6B35&color=fff'"/>
       <div><div style="font-weight:700;font-size:14px;">${p.ownerName||'Owner'}</div><div style="font-size:12px;color:var(--text3);">Property Owner</div></div>
@@ -1522,9 +1557,6 @@ window.trackWA = async function(id) {
   }, 3000);
 };
 
-// ==============================
-// AI CHAT
-// ==============================
 function toggleChat() {
   document.getElementById('ai-chat-panel').classList.toggle('open');
 }
@@ -1566,13 +1598,38 @@ window.chatOption = function(opt) {
   msgs.scrollTop = msgs.scrollHeight;
 };
 
-window.getUserLocation = function() {
-  if (!navigator.geolocation) { showToast('Location not supported', 'error'); return; }
-  navigator.geolocation.getCurrentPosition(pos=>{
+window.getUserLocation = function(autoMode = false) {
+  if (!navigator.geolocation) { 
+    if(!autoMode) showToast('Location not supported', 'error'); 
+    return; 
+  }
+  
+  if(!autoMode) showToast('Fetching live location...', '');
+
+  navigator.geolocation.getCurrentPosition(async pos => {
     const { latitude, longitude } = pos.coords;
     window.userLocation = { lat: latitude, lng: longitude };
-    showToast('Location mili! Nearby results dikh rahe hain 📍', 'success');
-  }, err=>showToast('Location access nahi mila', 'error'));
+    
+    try {
+      const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${latitude}&lon=${longitude}&format=json`);
+      const data = await res.json();
+      
+      if(data && data.address && data.address.postcode) {
+        const userPincode = data.address.postcode;
+        
+        document.getElementById('search-input').value = userPincode;
+        window.filterListings();
+        
+        showToast(`Live location set! Showing properties near Pincode: ${userPincode} 📍`, 'success');
+      } else {
+        if(!autoMode) showToast('Location fetched, but pincode not found.', 'success');
+      }
+    } catch (e) {
+       if(!autoMode) showToast('Live location fetched 📍', 'success');
+    }
+  }, err => {
+    if(!autoMode) showToast('Please allow location access to find nearby homes!', 'error');
+  });
 };
 
 window.previewImages = function(input) {
@@ -1604,15 +1661,13 @@ window.switchTab = function(tabId, btn) {
   document.getElementById('tab-'+tabId).classList.add('active');
 };
 
-// FIX 4: Feedback to Developer's WhatsApp directly
 window.submitFeedback = function() {
   const stars = window.selectedStars || 0;
   const text = document.getElementById('feedback-text').value.trim();
   if (!stars && !text) { showToast('Rating ya message zaroor dein!', 'error'); return; }
   
-  const msg = `*GharDirect Feedback* 🏠\n*Rating:* ${stars} Stars ⭐\n*Message:* ${text}`;
+  const msg = `*GharDhundho Feedback* 🏠\n*Rating:* ${stars} Stars ⭐\n*Message:* ${text}`;
   
-  // Directly opening WhatsApp to the developer's number
   window.open(`https://wa.me/917874848643?text=${encodeURIComponent(msg)}`, '_blank');
   
   document.getElementById('feedback-text').value = '';
