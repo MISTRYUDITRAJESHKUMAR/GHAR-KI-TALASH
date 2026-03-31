@@ -734,7 +734,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
       <span style="font-family:var(--font-head);font-size:18px;font-weight:800;color:var(--accent);">GharDhundho</span>
     </p>
     <p>🇮🇳 Made with ❤️ in India · <a href="#" onclick="openModal('terms-modal')">Terms & Conditions</a> · <a href="#" onclick="openModal('privacy-modal')">Privacy Policy</a></p>
-    <p style="margin-top:6px;">© 2024 GharDhundho by Udit Mistry — Zero Brokerage, Real India</p>
+    <p style="margin-top:6px;">© 2026 GharDhundho by Udit Mistry — Zero Brokerage, Real India</p>
   </footer>
 
 </div><div id="page-profile" class="hidden" style="min-height:80vh;">
@@ -1010,7 +1010,6 @@ textarea.form-input{resize:vertical;min-height:80px;}
   const db = getFirestore(app);
   const provider = new GoogleAuthProvider();
 
-  // Make globally accessible
   window._fb = { auth, db, provider, serverTimestamp, increment, arrayUnion, arrayRemove };
 
   // =====================
@@ -1045,7 +1044,6 @@ textarea.form-input{resize:vertical;min-height:80px;}
       updateNavForGuest();
     }
     
-    // CALL STATS FOR EVERYONE (GUESTS AND LOGGED-IN USERS)
     if (window.loadStats) window.loadStats();
     if (window.loadUsers) window.loadUsers();
 
@@ -1111,13 +1109,10 @@ textarea.form-input{resize:vertical;min-height:80px;}
       });
     } catch(e) {
       document.getElementById('prop-grid').innerHTML =
-        `<div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-exclamation-triangle"></i><div>Firebase config check karo! (${e.message})</div></div>`;
+        `<div class="empty-state" style="grid-column:1/-1;"><i class="fas fa-exclamation-triangle"></i><div>Firebase Rules Update Karo! (${e.message})</div></div>`;
     }
   };
 
-  // =====================
-  // SUBMIT POST AD
-  // =====================
   window.submitPost = async () => {
     if (!window.currentUser) { openModal('login-modal'); return; }
     if (!window.currentUserData?.whatsapp) {
@@ -1272,7 +1267,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
         </div>
       `).join('');
     } catch(e) {
-      console.error(e);
+      console.error("loadUsers Error:", e);
     }
   };
 
@@ -1290,7 +1285,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
       const snap = await getDocs(collection(db, 'users'));
       animateCount('stat-users', snap.size);
     } catch(e) {
-      console.error(e);
+      console.error("loadStats Error:", e);
     }
   };
 
@@ -1394,22 +1389,37 @@ function updateNavForGuest() {
 }
 
 window.renderCard = function(p, isOwner=false) {
+  const isGuest = !window.currentUser;
   const isCurrentUser = window.currentUser && p.uid === window.currentUser.uid;
   
   const isLiked = window.currentUserData && window.currentUserData.likedProps && window.currentUserData.likedProps.includes(p.id);
   const heartClass = isLiked ? 'interested' : '';
 
+  // IMAGE BLUR FOR GUESTS
+  const imgStyle = isGuest ? "filter: blur(12px); transform: scale(1.1);" : "";
+  
   const imgHTML = p.images && p.images.length
-    ? `<img src="${p.images[0]}" alt="${p.title}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder><i class=fas fa-home></i><span>No Image</span></div>'/>`
-    : `<div class="card-img-placeholder"><i class="fas fa-home"></i><span>No Image</span></div>`;
+    ? `<img src="${p.images[0]}" alt="${p.title}" loading="lazy" style="${imgStyle}" onerror="this.parentElement.innerHTML='<div class=card-img-placeholder><i class=fas fa-home></i><span>No Image</span></div>'/>`
+    : `<div class="card-img-placeholder" style="${isGuest?'filter:blur(8px);':''}"><i class="fas fa-home"></i><span>No Image</span></div>`;
 
   const timeStr = p.createdAt?.toDate ? formatTime(p.createdAt.toDate()) : 'Recently';
   const waNum = (p.whatsapp||'').replace(/\D/g,'');
   const waMsg = encodeURIComponent(`Hi! Maine GharDhundho pe aapki property dekhi: "${p.title}" (${p.location}). Kya yeh abhi available hai?`);
 
+  // LOCK OVERLAY FOR GUESTS (only on the image part)
+  const guestOverlay = isGuest ? `
+    <div style="position:absolute; inset:0; z-index:10; background:rgba(0,0,0,0.3); display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;">
+      <div style="background:rgba(10,12,20,0.8); padding:8px 16px; border-radius:20px; border:1px solid var(--accent); display:flex; align-items:center; gap:8px;">
+        <i class="fas fa-lock" style="color:var(--accent);"></i>
+        <span style="color:#fff; font-size:12px; font-weight:700;">Login to view Photos</span>
+      </div>
+    </div>
+  ` : '';
+
   return `<div class="prop-card" id="card-${p.id}">
-    <div class="card-img-wrap" style="cursor:pointer" onclick="openDetail('${p.id}')">
+    <div class="card-img-wrap" style="cursor:pointer" onclick="${isGuest ? "openModal('login-modal')" : `openDetail('${p.id}')`}">
       ${imgHTML}
+      ${guestOverlay}
       <span class="card-type-badge ${p.type==='rent'?'badge-rent-card':'badge-sell-card'}">${p.type==='rent'?'🏠 Rent':'💰 Sale'}</span>
       <span class="card-time">${timeStr}</span>
     </div>
@@ -1424,15 +1434,15 @@ window.renderCard = function(p, isOwner=false) {
       <div class="card-price">₹${Number(p.price).toLocaleString('en-IN')}<span>/${p.type==='rent'?'month':'total'}</span></div>
       <div class="card-actions">
         ${window.currentUser
-          ? `<a href="https://wa.me/${waNum}?text=${waMsg}" target="_blank" class="btn btn-whatsapp btn-sm" style="flex:1;justify-content:center;" onclick="trackWA('${p.id}')"><i class="fab fa-whatsapp"></i> WhatsApp</a>`
-          : `<button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center;" onclick="openModal('login-modal')"><i class="fas fa-lock"></i> Login</a>`
+          ? `<button class="btn btn-whatsapp btn-sm" style="flex:1;justify-content:center;" onclick="window.open('https://wa.me/${waNum}?text=${waMsg}', '_blank'); trackWA('${p.id}');"><i class="fab fa-whatsapp"></i> WhatsApp</button>`
+          : `<button class="btn btn-ghost btn-sm" style="flex:1;justify-content:center; background:rgba(255,107,53,0.1); color:var(--accent); border-color:var(--accent);" onclick="openModal('login-modal')"><i class="fas fa-lock"></i> Login to Contact</button>`
         }
-        <button class="btn btn-ghost btn-sm" onclick="shareProperty('${p.id}')"><i class="fas fa-share-alt"></i></button>
-        <button class="btn btn-ghost btn-sm" onclick="openDetail('${p.id}')"><i class="fas fa-expand-alt"></i></button>
+        <button class="btn btn-ghost btn-sm" onclick="${isGuest ? "openModal('login-modal')" : `shareProperty('${p.id}')`}"><i class="fas fa-share-alt"></i></button>
+        <button class="btn btn-ghost btn-sm" onclick="${isGuest ? "openModal('login-modal')" : `openDetail('${p.id}')`}"><i class="fas fa-expand-alt"></i></button>
       </div>
       <div class="card-stats">
         <div class="card-stat">
-          <button id="int-btn-${p.id}" class="${heartClass}" onclick="toggleInterest('${p.id}',this)" ${!window.currentUser?'disabled':''}>
+          <button id="int-btn-${p.id}" class="${heartClass}" onclick="${isGuest ? "openModal('login-modal')" : `toggleInterest('${p.id}',this)`}">
             <i class="fas fa-heart"></i> <span id="int-count-${p.id}">${p.interests||0}</span>
           </button>
         </div>
@@ -1538,9 +1548,9 @@ window.openDetail = function(id) {
     </div>
     
     <div style="display:flex;gap:10px;margin-top:16px;flex-wrap:wrap;">
-      <a href="https://wa.me/${waNum}?text=${waMsg}" target="_blank" class="btn btn-whatsapp" style="flex:1;justify-content:center;" onclick="trackWA('${p.id}')">
+      <button class="btn btn-whatsapp" style="flex:1;justify-content:center;" onclick="window.open('https://wa.me/${waNum}?text=${waMsg}', '_blank'); trackWA('${p.id}')">
         <i class="fab fa-whatsapp"></i> WhatsApp
-      </a>
+      </button>
       ${p.mapLink ? `<a href="${p.mapLink}" target="_blank" class="btn btn-ghost" style="flex:1;justify-content:center;color:var(--blue);border-color:var(--blue);"><i class="fas fa-map-marker-alt"></i> View Map</a>` : ''}
       <button class="btn btn-ghost" style="flex:1;justify-content:center;" onclick="shareProperty('${p.id}')">
         <i class="fas fa-share-alt"></i> Share
