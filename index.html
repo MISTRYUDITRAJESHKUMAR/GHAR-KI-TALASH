@@ -734,7 +734,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
       <span style="font-family:var(--font-head);font-size:18px;font-weight:800;color:var(--accent);">GharDhundho</span>
     </p>
     <p>🇮🇳 Made with ❤️ in India · <a href="#" onclick="openModal('terms-modal')">Terms & Conditions</a> · <a href="#" onclick="openModal('privacy-modal')">Privacy Policy</a></p>
-    <p style="margin-top:6px;">© 2026 GharDhundho by Udit Mistry <img src="" alt="" sizes="" srcset=""> — Zero Brokerage, Real India</p>
+    <p style="margin-top:6px;">© 2024 GharDhundho by Udit Mistry — Zero Brokerage, Real India</p>
   </footer>
 
 </div><div id="page-profile" class="hidden" style="min-height:80vh;">
@@ -1039,14 +1039,16 @@ textarea.form-input{resize:vertical;min-height:80px;}
       if (!window.currentUserData.likedProps) window.currentUserData.likedProps = [];
       
       updateNavForUser(user);
-      
-      if (window.loadStats) window.loadStats();
-      if (window.loadUsers) window.loadUsers();
     } else {
       window.currentUser = null;
       window.currentUserData = null;
       updateNavForGuest();
     }
+    
+    // CALL STATS FOR EVERYONE (GUESTS AND LOGGED-IN USERS)
+    if (window.loadStats) window.loadStats();
+    if (window.loadUsers) window.loadUsers();
+
     setTimeout(() => {
       const ls = document.getElementById('loading-screen');
       ls.classList.add('fade');
@@ -1082,7 +1084,6 @@ textarea.form-input{resize:vertical;min-height:80px;}
     const whatsapp = document.getElementById('edit-whatsapp').value.trim();
     if (!whatsapp) { showToast('WhatsApp number required!', 'error'); return; }
     
-    // Maplink removed from profile save
     const data = {
       whatsapp,
       address: document.getElementById('edit-address').value.trim(),
@@ -1137,7 +1138,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
     const pincode = document.getElementById('post-pincode').value.trim();
     const location = document.getElementById('post-location').value.trim();
     const whatsapp = document.getElementById('post-whatsapp').value.trim();
-    const mapLink = document.getElementById('post-maplink').value.trim(); // GETTING MAP LINK HERE
+    const mapLink = document.getElementById('post-maplink').value.trim();
     const desc = document.getElementById('post-desc').value.trim();
     const terms = document.getElementById('post-terms').checked;
     const category = document.getElementById('post-category').value;
@@ -1167,7 +1168,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
       }
 
       await addDoc(collection(db, 'properties'), {
-        title, type, price: Number(price), pincode, location, whatsapp, mapLink, // SAVING MAP LINK HERE
+        title, type, price: Number(price), pincode, location, whatsapp, mapLink,
         desc, category, images: imgURLs,
         uid: window.currentUser.uid,
         ownerName: window.currentUser.displayName,
@@ -1256,19 +1257,23 @@ textarea.form-input{resize:vertical;min-height:80px;}
   };
 
   window.loadUsers = async () => {
-    const snap = await getDocs(collection(db, 'users'));
-    const users = snap.docs.map(d=>d.data());
-    const grid = document.getElementById('users-grid');
-    if (!users.length) { grid.innerHTML = '<p style="color:var(--text3);font-size:13px;">No users yet.</p>'; return; }
-    grid.innerHTML = users.map(u=>`
-      <div class="user-chip">
-        <img src="${u.photo||'https://ui-avatars.com/api/?name='+encodeURIComponent(u.name||'U')+'&background=FF6B35&color=fff'}" alt="${u.name||'User'}" onerror="this.src='https://ui-avatars.com/api/?name=U&background=FF6B35&color=fff'"/>
-        <div class="user-chip-info">
-          <div class="user-chip-name">${u.name||'User'}</div>
-          <div class="user-chip-state">${u.state||'India'}</div>
+    try {
+      const snap = await getDocs(collection(db, 'users'));
+      const users = snap.docs.map(d=>d.data());
+      const grid = document.getElementById('users-grid');
+      if (!users.length) { grid.innerHTML = '<p style="color:var(--text3);font-size:13px;">No users yet.</p>'; return; }
+      grid.innerHTML = users.map(u=>`
+        <div class="user-chip">
+          <img src="${u.photo||'https://ui-avatars.com/api/?name='+encodeURIComponent(u.name||'U')+'&background=FF6B35&color=fff'}" alt="${u.name||'User'}" onerror="this.src='https://ui-avatars.com/api/?name=U&background=FF6B35&color=fff'"/>
+          <div class="user-chip-info">
+            <div class="user-chip-name">${u.name||'User'}</div>
+            <div class="user-chip-state">${u.state||'India'}</div>
+          </div>
         </div>
-      </div>
-    `).join('');
+      `).join('');
+    } catch(e) {
+      console.error(e);
+    }
   };
 
   window.updateStats = () => {
@@ -1281,8 +1286,12 @@ textarea.form-input{resize:vertical;min-height:80px;}
   };
 
   window.loadStats = async () => {
-    const snap = await getDocs(collection(db, 'users'));
-    animateCount('stat-users', snap.size);
+    try {
+      const snap = await getDocs(collection(db, 'users'));
+      animateCount('stat-users', snap.size);
+    } catch(e) {
+      console.error(e);
+    }
   };
 
   window.renderProfilePage = async () => {
