@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -93,13 +93,21 @@ input,select,textarea{font-family:var(--font-body);outline:none;border:none;}
   display:flex;align-items:center;justify-content:space-between;
   transition:var(--transition);
 }
-.nav-brand{display:flex;align-items:center;gap:10px;}
+.nav-brand{display:flex;align-items:center;gap:12px;}
+
+/* SVG Logo Styles */
 .nav-logo{
-  width:38px;height:38px;border-radius:10px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-head);font-size:20px;font-weight:800;color:#fff;
+  width: 44px; 
+  height: 44px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  transition: var(--transition);
 }
+.nav-logo:hover {
+  transform: scale(1.05);
+}
+
 .nav-title{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--text);}
 .nav-title span{color:var(--accent);}
 .nav-right{display:flex;align-items:center;gap:12px;}
@@ -160,9 +168,12 @@ input,select,textarea{font-family:var(--font-body);outline:none;border:none;}
   font-weight:800;line-height:1.15;color:var(--text);
   margin-bottom:16px;animation:fadeDown 0.7s ease;
 }
+
 .hero-h1 span{
   background:linear-gradient(90deg,var(--accent),var(--accent2));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  -webkit-background-clip: text;
+  background-clip: text; /* Yeh standard property warning hatane ke liye add ki gayi hai */
+  -webkit-text-fill-color: transparent;
 }
 .hero-sub{
   font-size:clamp(15px,2vw,19px);color:var(--text2);
@@ -457,6 +468,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
   background:linear-gradient(135deg,var(--accent),var(--accent2));
   display:flex;align-items:center;justify-content:center;
   font-size:36px;color:#fff;
+  overflow: hidden;
 }
 .founder-info h3{font-family:var(--font-head);font-size:22px;font-weight:800;color:var(--text);margin-bottom:4px;}
 .founder-info p{font-size:14px;color:var(--text2);line-height:1.6;}
@@ -532,11 +544,12 @@ textarea.form-input{resize:vertical;min-height:80px;}
 }
 #loading-screen.fade{opacity:0;pointer-events:none;}
 .loading-logo{
-  width:64px;height:64px;border-radius:16px;
-  background:linear-gradient(135deg,var(--accent),var(--accent2));
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--font-head);font-size:32px;color:#fff;font-weight:800;
-  animation:fadeDown 0.5s ease;
+  width: 90px; 
+  height: 90px; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  animation: fadeDown 0.5s ease;
 }
 
 /* ===== PROPERTY DETAIL MODAL ===== */
@@ -590,7 +603,16 @@ textarea.form-input{resize:vertical;min-height:80px;}
 <body>
 
 <div id="loading-screen">
-  <div class="loading-logo">G</div>
+  <div class="loading-logo">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <path d="M50 5 L10 35 L20 35 L20 85 L80 85 L80 35 L90 35 Z" fill="var(--accent2)" />
+        <circle cx="50" cy="50" r="28" fill="var(--bg)" />
+        <path d="M50 30 L32 45 L32 65 L68 65 L68 45 Z" fill="none" stroke="var(--text)" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M45 65 L45 52 L55 52 L55 65" fill="none" stroke="var(--text)" stroke-width="4" />
+        <circle cx="50" cy="50" r="28" fill="none" stroke="var(--accent)" stroke-width="6" />
+        <line x1="70" y1="70" x2="95" y2="95" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" />
+      </svg>
+  </div>
   <div class="spinner"></div>
   <p style="color:var(--text3);font-size:13px;">Loading GharDhundho...</p>
 </div>
@@ -599,7 +621,16 @@ textarea.form-input{resize:vertical;min-height:80px;}
 
 <nav id="navbar">
   <div class="nav-brand">
-    <div class="nav-logo">G</div>
+    <div class="nav-logo">
+      <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+        <path d="M50 5 L10 35 L20 35 L20 85 L80 85 L80 35 L90 35 Z" fill="var(--accent2)" />
+        <circle cx="50" cy="50" r="28" fill="var(--bg)" />
+        <path d="M50 30 L32 45 L32 65 L68 65 L68 45 Z" fill="none" stroke="var(--text)" stroke-width="4" stroke-linejoin="round"/>
+        <path d="M45 65 L45 52 L55 52 L55 65" fill="none" stroke="var(--text)" stroke-width="4" />
+        <circle cx="50" cy="50" r="28" fill="none" stroke="var(--accent)" stroke-width="6" />
+        <line x1="70" y1="70" x2="95" y2="95" stroke="var(--accent)" stroke-width="8" stroke-linecap="round" />
+      </svg>
+    </div>
     <span class="nav-title">Ghar<span>Dhundho</span></span>
   </div>
   <div class="nav-right">
@@ -705,9 +736,13 @@ textarea.form-input{resize:vertical;min-height:80px;}
   <section id="founder-section">
     <h2 class="section-title" style="text-align:center;margin-bottom:24px;">Meet The Founder</h2>
     <div class="founder-card">
-      <div class="founder-img"><i class="fas fa-user-graduate"></i></div>
+      
+      <div class="founder-img" style="background:var(--bg2);">
+         <img src="your-photo.png" alt="Udit Mistry R" style="width:100%; height:100%; object-fit:cover;" onerror="this.parentElement.innerHTML='<i class=&quot;fas fa-user-graduate&quot;></i>'"/>
+      </div>
+
       <div class="founder-info">
-        <h3>Udit Mistry</h3>
+        <h3>Udit Mistry R</h3>
         <p class="founder-college"><i class="fas fa-university"></i> BCA Student — Bholabhai Patel College of Computer Studies</p>
         <p style="margin-top:8px;">GharDhundho ka vision ek aisa platform banana tha jahan Indians apni property broker ke bina list kar sakein. Koi commission nahi, sirf direct connection. 🇮🇳</p>
         <div style="display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;">
@@ -820,6 +855,18 @@ textarea.form-input{resize:vertical;min-height:80px;}
   <div class="modal">
     <button class="modal-close" onclick="closeModal('profile-edit-modal')"><i class="fas fa-times"></i></button>
     <div class="modal-title">Complete Your Profile</div>
+
+    <div class="form-group">
+      <label class="form-label">Profile Image <span style="font-weight:400;color:var(--text3)">(Optional)</span></label>
+      <input type="file" id="edit-avatar" accept="image/*" style="display:none;" onchange="previewAvatar(this)"/>
+      <div style="display:flex; align-items:center; gap:12px;">
+         <img id="avatar-preview" src="" style="width:50px;height:50px;border-radius:50%;object-fit:cover;border:1px solid var(--border);display:none;"/>
+         <button class="btn btn-ghost btn-sm" onclick="document.getElementById('edit-avatar').click()">
+           <i class="fas fa-camera"></i> Choose Custom Image
+         </button>
+      </div>
+    </div>
+
     <div class="form-group">
       <label class="form-label">WhatsApp Number *</label>
       <input class="form-input" id="edit-whatsapp" type="tel" placeholder="+91 98765 43210" maxlength="13"/>
@@ -1018,7 +1065,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
   const db = getFirestore(app);
   const provider = new GoogleAuthProvider();
 
-  window._fb = { auth, db, provider, serverTimestamp, increment, arrayUnion, arrayRemove };
+  window._fb = { auth, db, provider, serverTimestamp, increment, arrayUnion, arrayRemove, setDoc, doc };
 
   // =====================
   // AUTH STATE LISTENER
@@ -1038,6 +1085,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
           address: '',
           state: '',
           gender: '',
+          customPhoto: null,
           likedProps: [],
           createdAt: serverTimestamp()
         });
@@ -1045,7 +1093,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
       window.currentUserData = snap.exists() ? snap.data() : { likedProps: [] };
       if (!window.currentUserData.likedProps) window.currentUserData.likedProps = [];
       
-      updateNavForUser(user);
+      updateNavForUser(user, window.currentUserData);
     } else {
       window.currentUser = null;
       window.currentUserData = null;
@@ -1085,23 +1133,58 @@ textarea.form-input{resize:vertical;min-height:80px;}
     showToast('Logged out successfully', 'success');
   };
 
+  // SAVE PROFILE & IMAGE UPLOAD LOGIC
   window.saveProfile = async () => {
     if (!window.currentUser) return;
     const whatsapp = document.getElementById('edit-whatsapp').value.trim();
     if (!whatsapp) { showToast('WhatsApp number required!', 'error'); return; }
     
-    const data = {
-      whatsapp,
-      address: document.getElementById('edit-address').value.trim(),
-      state: document.getElementById('edit-state').value,
-      gender: document.getElementById('edit-gender').value
-    };
-    
-    await setDoc(doc(db, 'users', window.currentUser.uid), data, { merge: true });
-    window.currentUserData = { ...window.currentUserData, ...data };
-    closeModal('profile-edit-modal');
-    showToast('Profile saved! ✅', 'success');
-    window.renderProfilePage && window.renderProfilePage();
+    const btn = document.querySelector('#profile-edit-modal .btn-primary');
+    const originalText = btn.innerHTML;
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spinner" style="width:16px;height:16px;display:inline-block;border-top-color:#fff;"></div> Saving...';
+
+    let customPhotoUrl = window.currentUserData?.customPhoto || null;
+    const avatarFile = document.getElementById('edit-avatar').files[0];
+
+    try {
+        if (avatarFile) {
+          const formData = new FormData();
+          formData.append('image', avatarFile);
+          const res = await fetch(`https://api.imgbb.com/1/upload?key=87973612bbce381e78cef86c50cc233b`, { method: 'POST', body: formData });
+          const data = await res.json();
+          if (data.success) {
+              customPhotoUrl = data.data.url;
+          } else {
+             showToast("Custom profile image upload failed.", "error");
+          }
+        }
+
+        const dataToSave = {
+          whatsapp,
+          address: document.getElementById('edit-address').value.trim(),
+          state: document.getElementById('edit-state').value,
+          gender: document.getElementById('edit-gender').value,
+          customPhoto: customPhotoUrl
+        };
+        
+        await window._fb.setDoc(window._fb.doc(db, 'users', window.currentUser.uid), dataToSave, { merge: true });
+        window.currentUserData = { ...window.currentUserData, ...dataToSave };
+        
+        // Update live avatar
+        const displayPhoto = window.currentUserData.customPhoto || window.currentUser.photoURL;
+        document.getElementById('nav-avatar').src = displayPhoto || '';
+
+        closeModal('profile-edit-modal');
+        showToast('Profile saved! ✅', 'success');
+        if(window.renderProfilePage) window.renderProfilePage();
+    } catch(e) {
+        showToast('Error saving profile.', 'error');
+        console.error(e);
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+    }
   };
 
   window.loadListings = async () => {
@@ -1175,7 +1258,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
         desc, category, images: imgURLs,
         uid: window.currentUser.uid,
         ownerName: window.currentUser.displayName,
-        ownerPhoto: window.currentUser.photoURL,
+        ownerPhoto: window.currentUserData?.customPhoto || window.currentUser.photoURL,
         ownerEmail: window.currentUser.email,
         interests: 0, shares: 0,
         createdAt: serverTimestamp()
@@ -1223,7 +1306,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
         btn.classList.remove('interested');
         showToast('Interest removed', '');
       } else {
-        await setDoc(intRef, { uid, name: window.currentUser.displayName, photo: window.currentUser.photoURL, ts: serverTimestamp() });
+        await setDoc(intRef, { uid, name: window.currentUser.displayName, photo: window.currentUserData?.customPhoto || window.currentUser.photoURL, ts: serverTimestamp() });
         await updateDoc(doc(db,'properties',propId), { interests: window._fb.increment(1) });
         await updateDoc(userRef, { likedProps: window._fb.arrayUnion(propId) });
         
@@ -1265,15 +1348,18 @@ textarea.form-input{resize:vertical;min-height:80px;}
       const users = snap.docs.map(d=>d.data());
       const grid = document.getElementById('users-grid');
       if (!users.length) { grid.innerHTML = '<p style="color:var(--text3);font-size:13px;">No users yet.</p>'; return; }
-      grid.innerHTML = users.map(u=>`
-        <div class="user-chip">
-          <img src="${u.photo||'https://ui-avatars.com/api/?name='+encodeURIComponent(u.name||'U')+'&background=FF6B35&color=fff'}" alt="${u.name||'User'}" onerror="this.src='https://ui-avatars.com/api/?name=U&background=FF6B35&color=fff'"/>
-          <div class="user-chip-info">
-            <div class="user-chip-name">${u.name||'User'}</div>
-            <div class="user-chip-state">${u.state||'India'}</div>
-          </div>
-        </div>
-      `).join('');
+      grid.innerHTML = users.map(u=>{
+          const photoToUse = u.customPhoto || u.photo || ('https://ui-avatars.com/api/?name='+encodeURIComponent(u.name||'U')+'&background=FF6B35&color=fff');
+          return `
+            <div class="user-chip">
+              <img src="${photoToUse}" alt="${u.name||'User'}" onerror="this.src='https://ui-avatars.com/api/?name=U&background=FF6B35&color=fff'"/>
+              <div class="user-chip-info">
+                <div class="user-chip-name">${u.name||'User'}</div>
+                <div class="user-chip-state">${u.state||'India'}</div>
+              </div>
+            </div>
+          `;
+      }).join('');
     } catch(e) {
       console.error("loadUsers Error:", e);
     }
@@ -1302,7 +1388,9 @@ textarea.form-input{resize:vertical;min-height:80px;}
     const ud = window.currentUserData || {};
     if (!u) return;
 
-    document.getElementById('profile-avatar-img').src = u.photoURL || '';
+    // Use custom photo if exists, else google photo
+    const displayPhoto = ud.customPhoto || u.photoURL || '';
+    document.getElementById('profile-avatar-img').src = displayPhoto;
     document.getElementById('profile-name-disp').textContent = u.displayName || 'User';
     document.getElementById('profile-email-disp').textContent = u.email || '';
 
@@ -1386,10 +1474,10 @@ function showPage(page) {
   }
 }
 
-function updateNavForUser(user) {
+function updateNavForUser(user, userData) {
   document.getElementById('nav-logged-out').classList.add('hidden');
   document.getElementById('nav-logged-in').classList.remove('hidden');
-  document.getElementById('nav-avatar').src = user.photoURL || '';
+  document.getElementById('nav-avatar').src = (userData && userData.customPhoto) ? userData.customPhoto : (user.photoURL || '');
 }
 function updateNavForGuest() {
   document.getElementById('nav-logged-out').classList.remove('hidden');
@@ -1658,6 +1746,18 @@ window.getUserLocation = function(autoMode = false) {
   }, err => {
     if(!autoMode) showToast('Please allow location access to find nearby homes!', 'error');
   });
+};
+
+window.previewAvatar = function(input) {
+  if (input.files && input.files[0]) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const preview = document.getElementById('avatar-preview');
+      preview.src = e.target.result;
+      preview.style.display = 'block';
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
 };
 
 window.previewImages = function(input) {
