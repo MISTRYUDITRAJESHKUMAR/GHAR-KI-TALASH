@@ -586,20 +586,6 @@ textarea.form-input{resize:vertical;min-height:80px;}
 }
 .map-embed iframe{width:100%;height:100%;border:none;}
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:600px){
-  #navbar{padding:0 14px;}
-  .nav-title{font-size:18px;}
-  #hero{padding:48px 16px 40px;}
-  .section{padding:28px 14px;}
-  .prop-grid{grid-template-columns:1fr;}
-  .modal{padding:22px 16px;}
-  .profile-card{flex-direction:column;}
-  .founder-card{flex-direction:column;text-align:center;}
-  #ai-chat-panel{width:calc(100vw - 32px);right:16px;}
-  #chat-system-panel{width:calc(100vw - 16px);right:8px;bottom:8px;height:85vh;}
-}
-
 /* ===== NOTIFICATION BELL ===== */
 .notif-bell-wrap{position:relative;}
 .notif-bell{
@@ -816,16 +802,57 @@ textarea.form-input{resize:vertical;min-height:80px;}
 .msg-thread-actions { margin-left: auto; }
 .msg-delete-btn { background: none; color: var(--text3); font-size: 15px; padding: 4px 8px; border-radius: 4px; transition: var(--transition); }
 .msg-delete-btn:hover { color: var(--red); background: rgba(231,76,60,0.1); }
-
-/* Nayi Image Attachment Feature ki CSS */
-.msg-attach-btn {
-  width: 36px; height: 36px; border-radius: 50%;
-  background: var(--bg2); color: var(--text2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 15px; flex-shrink: 0; transition: var(--transition); cursor: pointer;
-}
+.msg-attach-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--bg2); color: var(--text2); display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; transition: var(--transition); cursor: pointer; }
 .msg-attach-btn:hover { background: var(--border); color: var(--text); }
 .chat-img-msg { max-width: 200px; border-radius: 8px; margin-bottom: 4px; cursor: pointer; display: block; border: 1px solid rgba(0,0,0,0.1); }
+
+/* ===== MOBILE RESPONSIVE UI (OLX STYLE) ===== */
+.mobile-bottom-nav { display: none; }
+.mob-nav-btn { background: none; border: none; color: var(--text3); display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 10px; font-weight: 600; width: 60px; position: relative; transition: var(--transition); cursor: pointer; }
+.mob-nav-btn i { font-size: 20px; }
+.mob-nav-btn.active { color: var(--accent); }
+.mob-nav-fab { width: 48px; height: 48px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 20px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 10px rgba(255,107,53,0.4); transform: translateY(-10px); border: 4px solid var(--bg); cursor: pointer; }
+.mob-chat-badge { position: absolute; top: -4px; right: 12px; background: var(--red); color: #fff; font-size: 9px; font-weight: 700; min-width: 16px; height: 16px; border-radius: 8px; display: flex; align-items: center; justify-content: center; padding: 0 4px; border: 2px solid var(--bg3); display: none; }
+.mob-chat-badge.show { display: flex; }
+
+@media(max-width:768px){
+  #navbar { padding: 0 14px; }
+  .nav-title { font-size: 18px; }
+  #hero { padding: 48px 16px 40px; }
+  .section { padding: 28px 14px; }
+  .prop-grid { grid-template-columns: 1fr; }
+  .modal { padding: 22px 16px; }
+  .profile-card { flex-direction: column; }
+  .founder-card { flex-direction: column; text-align: center; }
+  #ai-chat-panel { width: calc(100vw - 32px); right: 16px; }
+  
+  /* Show bottom nav on mobile */
+  .mobile-bottom-nav {
+    display: flex; position: fixed; bottom: 0; left: 0; right: 0;
+    background: var(--bg3); border-top: 1px solid var(--border);
+    height: 60px; justify-content: space-around; align-items: center;
+    z-index: 1000; padding: 0 5px; box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+  }
+  body { padding-bottom: 60px; }
+  #chat-fab { display: none !important; }
+
+  /* Make Chat Panel Full Screen on Mobile (OLX Style) */
+  #chat-system-panel {
+    width: 100vw !important;
+    height: 100dvh !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    border-radius: 0 !important;
+    border: none !important;
+    z-index: 2000 !important; /* Cover everything including bottom nav */
+    transform: translateY(100%);
+  }
+  #chat-system-panel.open {
+    transform: translateY(0);
+  }
+}
 </style>
 </head>
 <body>
@@ -1282,6 +1309,25 @@ textarea.form-input{resize:vertical;min-height:80px;}
   </div>
 </div>
 
+<div class="mobile-bottom-nav">
+  <button class="mob-nav-btn active" id="mob-nav-home" onclick="showPage('home'); closeChatSystem();">
+    <i class="fas fa-home"></i><span>Home</span>
+  </button>
+  <button class="mob-nav-btn" id="mob-nav-chat" onclick="toggleChatSystem()">
+    <i class="far fa-comments"></i><span>Chats</span>
+    <div class="mob-chat-badge" id="mob-chat-badge">0</div>
+  </button>
+  <button class="mob-nav-fab" onclick="openModal('post-modal'); closeChatSystem();">
+    <i class="fas fa-plus"></i>
+  </button>
+  <button class="mob-nav-btn" id="mob-nav-ads" onclick="if(window.currentUser){ showPage('profile'); switchTab('my-ads', document.querySelector('.tab-btn')); } else { openModal('login-modal'); } closeChatSystem();">
+    <i class="far fa-heart"></i><span>My Ads</span>
+  </button>
+  <button class="mob-nav-btn" id="mob-nav-account" onclick="if(window.currentUser){ showPage('profile'); } else { openModal('login-modal'); } closeChatSystem();">
+    <i class="far fa-user"></i><span>Account</span>
+  </button>
+</div>
+
 <script type="module">
   // ============================================================
   // 🔥 FIREBASE CONFIGURATION 
@@ -1594,6 +1640,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
     } catch(e) { console.error("Share tracking error", e); }
   };
 
+  // 🔥 ADDED GLOBAL CACHE HERE
   window.loadUsers = async () => {
     try {
       const snap = await getDocs(collection(db, 'users'));
@@ -1720,6 +1767,12 @@ function showToast(msg, type='') {
 function showPage(page) {
   document.getElementById('page-home').classList.toggle('hidden', page !== 'home');
   document.getElementById('page-profile').classList.toggle('hidden', page !== 'profile');
+  
+  // Handle Bottom Nav Styling
+  document.querySelectorAll('.mob-nav-btn').forEach(b => b.classList.remove('active'));
+  if (page === 'home') document.getElementById('mob-nav-home').classList.add('active');
+  if (page === 'profile') document.getElementById('mob-nav-account').classList.add('active');
+
   if (page === 'profile') {
     if(window.renderProfilePage) window.renderProfilePage();
     window.scrollTo(0,0);
@@ -2081,6 +2134,7 @@ document.addEventListener('keydown', e=>{
   if (e.key==='Escape') document.querySelectorAll('.modal-overlay.open').forEach(m=>m.classList.remove('open'));
 });
 </script>
+
 <button id="chat-fab" onclick="toggleChatSystem()" title="Messages">
   <i class="fas fa-comments"></i>
   <div class="chat-fab-badge" id="chat-fab-badge">0</div>
@@ -2091,12 +2145,16 @@ document.addEventListener('keydown', e=>{
     <div class="chat-sys-header">
       <i class="fas fa-comments" style="color:var(--blue);"></i>
       <span class="chat-sys-title">Messages</span>
-      <button class="chat-sys-close" onclick="toggleChatSystem()"><i class="fas fa-times"></i></button>
+      <button class="chat-sys-close" onclick="closeChatSystem()"><i class="fas fa-times"></i></button>
     </div>
-    <button class="new-chat-btn" onclick="showChatUserSearch()">
-      <i class="fas fa-plus-circle"></i> New Conversation
-    </button>
-    <input class="chat-search-input" id="conv-search" placeholder="🔍 Search conversations..." oninput="filterConversations(this.value)"/>
+    
+    <div style="display:flex; gap:8px; padding: 10px 16px; border-bottom: 1px solid var(--border); background:var(--bg);">
+      <button class="pill active" id="filter-all" style="background:var(--accent); color:#fff; border-color:var(--accent);" onclick="filterChatBy('all', this)">All</button>
+      <button class="pill" id="filter-unread" onclick="filterChatBy('unread', this)">Unread</button>
+    </div>
+    
+    <input class="chat-search-input" id="conv-search" placeholder="🔍 Search conversations..." oninput="applyChatFilters()"/>
+    
     <div class="conv-list" id="conv-list">
       <div style="padding:40px 20px;text-align:center;color:var(--text3);font-size:13px;">
         <i class="fas fa-comments" style="font-size:32px;opacity:0.3;display:block;margin-bottom:10px;"></i>
@@ -2109,7 +2167,7 @@ document.addEventListener('keydown', e=>{
     <div class="chat-sys-header">
       <button class="msg-back-btn" onclick="showChatList()"><i class="fas fa-arrow-left"></i></button>
       <span class="chat-sys-title">New Message</span>
-      <button class="chat-sys-close" onclick="toggleChatSystem()"><i class="fas fa-times"></i></button>
+      <button class="chat-sys-close" onclick="closeChatSystem()"><i class="fas fa-times"></i></button>
     </div>
     <input class="chat-search-input" id="user-search-input" placeholder="🔍 Search users by name..." oninput="searchUsersForChat(this.value)"/>
     <div class="conv-list" id="user-search-results">
@@ -2171,6 +2229,7 @@ let currentChatUserId = null;
 let currentChatConvId = null;
 let msgUnsubscribe = null;
 let convUnsubscribe = null;
+window.currentChatFilter = 'all';
 
 window.allUsersCache = window.allUsersCache || [];
 let conversationsCache = [];
@@ -2179,7 +2238,25 @@ window.toggleChatSystem = function() {
   if (!window.currentUser) { openModal('login-modal'); return; }
   chatPanelOpen = !chatPanelOpen;
   document.getElementById('chat-system-panel').classList.toggle('open', chatPanelOpen);
-  if (chatPanelOpen) { showChatList(); startConversationListener(); }
+  
+  if (chatPanelOpen) { 
+    showChatList(); 
+    startConversationListener();
+    // Update bottom nav active state
+    document.querySelectorAll('.mob-nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('mob-nav-chat').classList.add('active');
+  } else {
+    // Revert bottom nav active state if closed via X
+    document.querySelectorAll('.mob-nav-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('page-profile').classList.contains('hidden') ? 
+       document.getElementById('mob-nav-home').classList.add('active') : 
+       document.getElementById('mob-nav-account').classList.add('active');
+  }
+};
+
+window.closeChatSystem = function() {
+  chatPanelOpen = false;
+  document.getElementById('chat-system-panel').classList.remove('open');
 };
 
 window.showChatList = function() {
@@ -2303,7 +2380,6 @@ function renderMessages(msgs, myUid) {
     }
     const timeStr = ts.toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'});
     
-    // 🔥 RENDER IMAGE IF AVAILABLE
     const imgTag = m.imageUrl ? `<img src="${m.imageUrl}" class="chat-img-msg" onclick="window.open('${m.imageUrl}','_blank')" />` : '';
     const textTag = m.text ? escapeHtml(m.text) : '';
     const spacing = (m.imageUrl && m.text) ? '<br/>' : '';
@@ -2319,7 +2395,6 @@ function escapeHtml(str) {
   return (str||'').replace(/&/g,'&').replace(/</g,'<').replace(/>/g,'>').replace(/\n/g,'<br>');
 }
 
-// Quick Replies & Offers
 window.promptOffer = function() {
   const offer = prompt("Apna offer amount (₹) type karein:");
   if (offer && !isNaN(offer) && offer.trim() !== "") {
@@ -2336,13 +2411,12 @@ window.sendQuickReply = function(text) {
   sendMessage();
 };
 
-// 🔥 NAYA FUNCTION: Upload Image in Chat
 window.uploadChatImage = async function(input) {
   if (!input.files || !input.files[0]) return;
   if (!window.currentUser || !currentChatConvId || !window._fb) return;
 
   const file = input.files[0];
-  input.value = ''; // reset input
+  input.value = ''; 
   showToast("Sending photo...", "");
 
   try {
@@ -2374,7 +2448,6 @@ window.sendMessage = function() {
   sendActualMessage(text, null);
 };
 
-// Common message sender logic (Text or Image)
 window.sendActualMessage = async function(text, imageUrl = null) {
   const btn = document.getElementById('msg-send-btn');
   if (btn) btn.disabled = true;
@@ -2464,7 +2537,7 @@ async function startConversationListener() {
     
     conversationsCache.sort((a,b) => (b.lastMessageTime?.toMillis() || 0) - (a.lastMessageTime?.toMillis() || 0));
     
-    renderConversationList(conversationsCache, myUid);
+    applyChatFilters();
     updateTotalUnread(conversationsCache, myUid);
   }, (error) => {
     console.error("Chat Error:", error);
@@ -2472,10 +2545,38 @@ async function startConversationListener() {
   });
 }
 
+// 🔥 NAYA FUNCTION: CHAT FILTERS (ALL / UNREAD)
+window.filterChatBy = function(type, btn) {
+  window.currentChatFilter = type;
+  document.querySelectorAll('#chat-view-list .pill').forEach(b => {
+     b.style.background = 'var(--bg2)'; b.style.color = 'var(--text2)'; b.style.borderColor = 'var(--border)';
+  });
+  btn.style.background = 'var(--accent)'; btn.style.color = '#fff'; btn.style.borderColor = 'var(--accent)';
+  applyChatFilters();
+};
+
+window.applyChatFilters = function() {
+  const myUid = window.currentUser?.uid;
+  const q = (document.getElementById('conv-search')?.value || '').toLowerCase();
+  
+  let filtered = conversationsCache.filter(c=>{
+    const o=c.participants?.find(p=>p!==myUid);
+    const globalUser = window.allUsersCache?.find(u => u.uid === o);
+    const nameToSearch = globalUser?.name || c.participantNames?.[o] || 'User';
+    return nameToSearch.toLowerCase().includes(q);
+  });
+
+  if (window.currentChatFilter === 'unread') {
+    filtered = filtered.filter(c => (c.unreadCount?.[myUid] || 0) > 0);
+  }
+
+  renderConversationList(filtered, myUid);
+};
+
 function renderConversationList(convs, myUid) {
   const list = document.getElementById('conv-list');
   if (!convs.length) {
-    list.innerHTML = '<div style="padding:40px 20px;text-align:center;color:var(--text3);font-size:13px;"><i class="fas fa-comments" style="font-size:32px;opacity:0.3;display:block;margin-bottom:10px;"></i>Koi conversation nahi.<br/>New Conversation start karo!</div>';
+    list.innerHTML = '<div style="padding:40px 20px;text-align:center;color:var(--text3);font-size:13px;"><i class="fas fa-comments" style="font-size:32px;opacity:0.3;display:block;margin-bottom:10px;"></i>Koi conversation nahi.</div>';
     return;
   }
   list.innerHTML = convs.map(c => {
@@ -2515,24 +2616,22 @@ function renderConversationList(convs, myUid) {
   }).join('');
 }
 
-window.filterConversations = function(q) {
-  const myUid = window.currentUser?.uid;
-  const filtered = q.trim()
-    ? conversationsCache.filter(c=>{
-        const o=c.participants?.find(p=>p!==myUid);
-        const globalUser = window.allUsersCache?.find(u => u.uid === o);
-        const nameToSearch = globalUser?.name || c.participantNames?.[o] || 'User';
-        return nameToSearch.toLowerCase().includes(q.toLowerCase());
-      })
-    : conversationsCache;
-  renderConversationList(filtered, myUid);
-};
-
 function updateTotalUnread(convs, myUid) {
   const total = convs.reduce((s,c)=>s+(c.unreadCount?.[myUid]||0),0);
+  
+  // PC fab badge
   const badge = document.getElementById('chat-fab-badge');
-  if (total>0) { badge.textContent=total>99?'99+':total; badge.classList.add('show'); }
-  else badge.classList.remove('show');
+  if (badge) {
+    if (total>0) { badge.textContent=total>99?'99+':total; badge.classList.add('show'); }
+    else badge.classList.remove('show');
+  }
+  
+  // Mobile nav badge
+  const mobBadge = document.getElementById('mob-chat-badge');
+  if (mobBadge) {
+    if (total>0) { mobBadge.textContent=total>99?'99+':total; mobBadge.classList.add('show'); }
+    else mobBadge.classList.remove('show');
+  }
 }
 
 window.openChatWithOwner = async function(ownerUid, encodedOwnerName, encodedOwnerPhoto, encodedPropertyTitle) {
@@ -2544,7 +2643,12 @@ window.openChatWithOwner = async function(ownerUid, encodedOwnerName, encodedOwn
   const propertyTitle = decodeURIComponent(encodedPropertyTitle);
 
   if (!window.allUsersCache.find(u=>u.uid===ownerUid)) window.allUsersCache.push({uid:ownerUid,name:ownerName,photo:ownerPhoto});
-  if (!chatPanelOpen) { chatPanelOpen=true; document.getElementById('chat-system-panel').classList.add('open'); startConversationListener(); }
+  
+  if (!chatPanelOpen) { 
+      chatPanelOpen=true; 
+      document.getElementById('chat-system-panel').classList.add('open'); 
+      startConversationListener(); 
+  }
   
   await openChatWith(ownerUid, encodedOwnerName, encodedOwnerPhoto);
   
