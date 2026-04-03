@@ -92,7 +92,6 @@ input,select,textarea{font-family:var(--font-body);outline:none;border:none;}
   height:64px;
   display:flex;align-items:center;justify-content:space-between;
   transition:var(--transition);
-  /* overflow:hidden; REMOVED: This was causing the notification dropdown to hide */
   gap:8px;
 }
 .nav-brand{display:flex;align-items:center;gap:8px;min-width:0;flex-shrink:0;}
@@ -114,7 +113,6 @@ input,select,textarea{font-family:var(--font-body);outline:none;border:none;}
 .nav-title{
   font-family:var(--font-head);font-size:clamp(16px,4vw,22px);
   font-weight:800;color:var(--text);white-space:nowrap;
-  /* Removed max-width, overflow:hidden, and text-overflow to show full name */
 }
 .nav-title span{color:var(--accent);}
 .nav-right{display:flex;align-items:center;gap:6px;flex-shrink:0;flex-wrap:wrap;justify-content:flex-end;}
@@ -830,7 +828,6 @@ textarea.form-input{resize:vertical;min-height:80px;}
   }
   .nav-title { 
     font-size: clamp(14px, 3vw, 18px);
-    /* max-width removed */
   }
   .nav-logo {
     width: 36px;
@@ -986,11 +983,13 @@ textarea.form-input{resize:vertical;min-height:80px;}
     right: 12px;
   }
   
+  /* FIXED: Changed position to fixed so it stretches perfectly on mobile screens */
   .notif-dropdown {
-    width: calc(100vw - 32px);
-    right: 16px;
-    left: 16px;
-    max-width: 100%;
+    position: fixed;
+    width: auto;
+    max-width: none;
+    right: 12px;
+    left: 12px;
     top: 64px;
   }
   
@@ -1043,7 +1042,6 @@ textarea.form-input{resize:vertical;min-height:80px;}
     font-size: 11px;
   }
   
-  /* Show bottom nav on mobile */
   .mobile-bottom-nav {
     display: flex; position: fixed; bottom: 0; left: 0; right: 0;
     background: var(--bg3); border-top: 1px solid var(--border);
@@ -1053,7 +1051,6 @@ textarea.form-input{resize:vertical;min-height:80px;}
   body { padding-bottom: 56px; }
   #chat-fab { display: none !important; }
 
-  /* Make Chat Panel Full Screen on Mobile (OLX Style) */
   #chat-system-panel {
     width: 100vw !important;
     height: 100dvh !important;
@@ -1063,7 +1060,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
     bottom: 0 !important;
     border-radius: 0 !important;
     border: none !important;
-    z-index: 2000 !important; /* Cover everything including bottom nav */
+    z-index: 2000 !important;
     transform: translateY(100%);
   }
   #chat-system-panel.open {
@@ -1084,9 +1081,7 @@ textarea.form-input{resize:vertical;min-height:80px;}
   
   .nav-title {
     font-size: 14px;
-    /* max-width removed */
   }
-  /* span hiding rule removed */
   
   .nav-logo {
     width: 34px;
@@ -1365,10 +1360,13 @@ textarea.form-input{resize:vertical;min-height:80px;}
     font-size: 10px;
   }
   
+  /* FIXED: Changed position to fixed for extra small mobile */
   .notif-dropdown {
-    width: calc(100vw - 16px);
+    position: fixed;
+    width: auto;
     right: 8px;
     left: 8px;
+    top: 60px;
   }
   
   .notif-item {
